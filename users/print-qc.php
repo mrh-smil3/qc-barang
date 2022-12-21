@@ -1,9 +1,9 @@
 
 <?php
-session_start();
-if($_SESSION['username']==""){
-  header("location:../../index.php?alert=belum_login");
-}
+// session_start();
+// if($_SESSION['username']==""){
+//   header("location:../../index.php?alert=belum_login");
+// }
 
 include "template/sidebar.php";
 // include "admin/template/navbar.php";

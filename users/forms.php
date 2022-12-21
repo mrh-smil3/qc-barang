@@ -1,5 +1,5 @@
 <?php 
-session_start();
+session_start(); 
 if($_SESSION['username']==""){
   header("location:../../index.php?alert=belum_login");
 }
@@ -11,19 +11,10 @@ include 'template/navbar.php';
 
 ?>
 
-<header></header>
+<!-- <header></header> -->
 <div class="col-md-4">
     <a href="create-forms.php"><button type="button" class="btn bg-gradient-success btn-block mb-3" data-bs-toggle="modal" data-bs-target="#modal-form"><span class="material-icons">note_add </span>Tambah Form QC</button></a>
-    <?php
-
-   // if(isset($_SESSION['success'])){
-
-   //    echo "<div class='alert alert-success'>".$_SESSION['success']."</div>";
-
-   // }
-
-
-?>
+    
 </div>
 
 

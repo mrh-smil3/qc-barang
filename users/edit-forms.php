@@ -1,9 +1,10 @@
 
 <?php
-session_start();
-if($_SESSION['username']==""){
-  header("location:../../index.php?alert=belum_login");
-}
+// session_start(); 
+// if($_SESSION['username']==""){
+//   header("location:../../index.php?alert=belum_login");
+// }
+
 include "template/sidebar.php";
 include "template/navbar.php";
 
@@ -34,9 +35,6 @@ if(isset($_POST['submit'])){
 
 
    $_SESSION['success'] = "Form QC updated successfully";
-   echo '<div class="alert alert-success text-white" role="alert">
-      <strong>Success!</strong> Edit users
-      </div>';
    header("Location: forms.php");
 }
 

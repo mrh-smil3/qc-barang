@@ -1,15 +1,15 @@
 
 <?php
-session_start();
-if($_SESSION['username']==""){
-  header("location:../../index.php?alert=belum_login");
-}
+// session_start(); 
+// if($_SESSION['username']==""){
+//   header("location:../../index.php?alert=belum_login");
+// }
+
     include 'template/sidebar.php';
     include 'template/navbar.php';
     
 
    require '../config/config.php';
-  //  $users = users->find(['nama'])
    // $barang = array('B01' => 'Kursi' , 'B02' => 'Meja', 'B03' => 'Almari' );
 
     if(isset($_POST['submit'])){
@@ -113,6 +113,9 @@ if($_SESSION['username']==""){
       </div>
     </div>
 
+
+   
+  
   <div class="row">
       <label>Status</label>
       <div class="form-check mb-3">
@@ -132,8 +135,6 @@ if($_SESSION['username']==""){
         <input type="text" class="form-control" name="note" placeholder="Note">
       </div>
     </div>
-
-    
     
   
     <div class="input-group input-group-static my-3">
@@ -142,8 +143,8 @@ if($_SESSION['username']==""){
     </div>
 
     <div class="col-md-4">
-      <a href="forms.php"><button name="submit" type="submit" class="btn bg-gradient-success btn-block mb-3" data-bs-toggle="modal" data-bs-target="">Submit</button>
-      <a href="forms.php"><button type="button" name="cancel" class="btn bg-gradient-danger btn-block mb-3" data-bs-toggle="modal" data-bs-target="#modal-form">Back</button>
+      <button name="submit" type="submit" class="btn bg-gradient-success btn-block mb-3" data-bs-toggle="modal" data-bs-target="">Submit</button>
+      <a href="forms.php"><button type="button" name="cancel" class="btn bg-gradient-danger btn-block mb-3" data-bs-toggle="modal" data-bs-target="#modal-form">Back</button></a>
     </div>
     </div>   
   </form>
