@@ -1,4 +1,8 @@
 <?php 
+session_start(); 
+if($_SESSION['username']==""){
+  header("location:../../index.php?alert=belum_login");
+}
   include "template/sidebar.php";
   include "template/navbar.php";
   
@@ -87,7 +91,7 @@ if(isset($_POST['submit'])){
                           <option selected disabled>Pilih Role</option>
                           <option value="Admin">Admin</option>
                           <option value="QC">QC</option>
-                          <option value="Customer">Customer</option>
+                          <!-- <option value="Customer">Customer</option> -->
                       </select>
                   </div>
                   

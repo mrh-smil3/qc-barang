@@ -1,4 +1,5 @@
 <?php
+
 include "template/sidebar.php";
 include "template/navbar.php";
 

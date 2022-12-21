@@ -1,10 +1,10 @@
 
 <?php
-session_start();
+
+session_start(); 
 if($_SESSION['username']==""){
   header("location:../../index.php?alert=belum_login");
 }
-
 include "template/sidebar.php";
 // include "admin/template/navbar.php";
 // include "../template/header.php";
@@ -25,113 +25,122 @@ require '../config/config.php';
   </div>
 </nav>
 
-<div class="card-body">
-<div class="table-responsive">
-<form method="POST" action="">
-  <div class="row">
-    <div class="col-md-4">
-      <br>
-      <label>Form ID</label>
-      <div class="input-group input-group-outline my-3">
-        <input type="text" class="form-control" name="form_id" placeholder="Form ID" value="<?php echo $forms->Form_id; ?>" disabled required>
-      </div>
-    </div>
-</div>
 
-    <div class="row">
-    <div class="col-md-6">
-      <label>ID Barang</label>
-      <div class="form-check form-check-inline col-md-4"></div>
-      <label>Nama Barang</label>
-      <div class="input-group input-group-outline my-3">
-        <input type="text" class="form-control" name="id_barang" placeholder="ID Barang" value="<?php echo $forms->Barang->Id_barang; ?>" disabled required>
-        <input type="text" class="form-control" name="nama_barang" placeholder="Nama Barang" value="<?php echo $forms->Barang->Nama_barang; ?>" disabled required>
-      </div>
-    </div>
-
-    <div class="row">
-      <label>Kondisi barang</label>
-      <div class="form-check mb-3">
-        <div class="">
-          <input class="form-check-input" type="radio" name="kondisi_barang" value="Baik" <?php if ($forms->Kondisi_barang == 'Baik') echo 'checked="checked"'; ?> id="customRadio1" disabled required>
-            <label class="custom-control-label" for="customRadio1">Baik</label>
-          <div class="form-check form-check-inline"></div>
-          <input class="form-check-input" type="radio" name="kondisi_barang" value="Kurang Baik" id="customRadio2" <?php if ($forms->Kondisi_barang == 'Kurang Baik') echo 'checked="checked"'; ?> disabled required>
-            <label class="custom-control-label" for="customRadio2">Kurang Baik</label>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <label>Hasil Finishing</label>
-      <div class="form-check mb-3">
-        <div class="">
-          <input class="form-check-input" type="radio" name="hasil_finishing" value="Baik" <?php if ($forms->Hasil_finishing == 'Baik') echo 'checked="checked"'; ?> id="customRadio1" disabled required>
-            <label class="custom-control-label" for="customRadio1">Baik</label>
-          <div class="form-check form-check-inline"></div>
-          <input class="form-check-input" type="radio" name="hasil_finishing" value="Kurang Baik" <?php if ($forms->Hasil_finishing == 'Kurang Baik') echo 'checked="checked"'; ?> id="customRadio2" disabled required>
-            <label class="custom-control-label" for="customRadio2">Kurang Baik</label>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <label>Aksesoris</label>
-      <div class="form-check mb-3">
-        <div class="">
-          <input class="form-check-input" type="radio" name="aksesoris" value="Lengkap" <?php if ($forms->Aksesoris == 'Lengkap') echo 'checked="checked"'; ?> id="customRadio1" disabled required>
-            <label class="custom-control-label" for="customRadio1">Lengkap</label>
-          <div class="form-check form-check-inline"></div>
-          <input class="form-check-input" type="radio" name="aksesoris" value="Kurang Lengkap" <?php if ($forms->Aksesoris == 'Kurang Lengkap') echo 'checked="checked"'; ?> id="customRadio2" disabled required>
-            <label class="custom-control-label" for="customRadio2">Kurang Lengkap</label>
-        </div>
-      </div>
-    </div>
- 
-
-    <div class="row">
-    <div class="col-md-2">
-      <label>Jumlah Barang</label>
-      <div class="input-group input-group-outline my-3">
-        <input type="number" class="form-control" name="jml_barang" value="<?php echo $forms->Qty; ?>"placeholder="Jumlah Barang" disabled required>
-      </div>
-    </div>
-
-
-   
+<!-- cetak form qc -->
+<div class="container-fluid">
   
-  <div class="row">
-      <label>Status</label>
-      <div class="form-check mb-3">
-        <div class="">
-          <input class="form-check-input" type="radio" name="status" value="Closed" <?php if ($forms->Status == 'Closed') echo 'checked="checked"'; ?> id="customRadio1" disabled required>
-            <label class="custom-control-label" for="customRadio1">Closed</label>
-          <div class="form-check form-check-inline"></div>
-          <input class="form-check-input" type="radio" name="status" value="Open" <?php if ($forms->Status == 'Open') echo 'checked="checked"'; ?> id="customRadio2" disabled required>
-            <label class="custom-control-label" for="customRadio2">Open</label>
+      <div class="col-md-3 my-4">
+        <label class="form-label">FORM ID</label>
+        <div class="input-group input-group-outline mb-4">
+          <input type="text" class="form-control" name="form_id" placeholder="Form ID" value="<?php echo $forms->Form_id; ?>"  readonly>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-    <div class="col-md-6">
-      <label>Note</label>
-      <div class="input-group input-group-outline my-3">
-        <input type="text" class="form-control" name="note" value="<?php echo $forms->Note; ?>" disabled placeholder="Note">
-      </div>
-    </div>
-    
-  
-    <div class="input-group input-group-static my-3">
-      <label>Tanggal Quality Control</label>
-      <input type="date" class="form-control" name="date" value="<?php echo $forms->Tanggal_qc; ?>" disabled required>
-    </div>
-
-    <div class="col-md-4">
-      <button onclick="window.print();" name="print" type="submit" class="btn" data-bs-toggle="modal" data-bs-target="">Print</button>
       
-    </div>
-    </div>   
+        <div class="col-md-3">
+          <label class="form-label">Tanggal Quality Control</label>
+            <div class="input-group input-group-outline mb-4">
+              <input type="text" class="form-control" name="tgl_qc" placeholder="Form ID" value="<?php echo $forms->Tanggal_qc; ?>"  readonly>
+            </div>
+          </div>
+       
+            <div class="col-md-3">
+              <label class="form-label">User QC</label>
+              <div class="input-group input-group-outline mb-4">
+                <input type="text" class="form-control" name="user_qc" placeholder="Form ID" value="<?php echo $forms->User_qc; ?>"  readonly>
+              </div>
+            </div>
+        
+
+  <form>
+    <table class="table table-bordered table-border-primary">
+      <thead>
+        <tr>
+          <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">No</th>
+          <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">Nama Barang</th>
+          <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2">Quality Control</th>
+          <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-3">Hasil</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="4">
+            <h6 class="ps-2">1</h6>
+          </td>
+            <td rowspan="4">
+              <input type="text" class="form-control ps-2" name="brg"  value="<?php echo $forms->Barang; ?>"  readonly >
+            </td>
+            <td>
+                <span class="text-dark text-xs ps-2">Kondisi Barang</span>
+            </td>
+            <td>
+                <input type="text" class="form-control ps-2" name="kondisi_barang"  value="<?php echo $forms->Kondisi_barang; ?>"  readonly>
+            </td>
+          </tr>
+
+          <tr>
+            <!-- <td colspan="2"></td> -->
+              <td>
+                  <span class="text-dark text-xs ps-2">Hasil Finishing</span>
+              </td>
+              <td>
+                  <input type="text" class="form-control ps-2" name="kondisi_barang" value="<?php echo $forms->Kondisi_barang; ?>" readonly>
+              </td>
+          </tr>
+          <tr>
+            <!-- <td colspan="2"></td> -->
+              <td>
+                  <span class="text-dark text-xs ps-2">Aksesoris</span>
+              </td>
+              <td>
+                  <input type="text" class="form-control ps-2" name="kondisi_barang"  value="<?php echo $forms->Aksesoris; ?>" readonly>
+              </td>
+          </tr>
+          <tr>
+            <!-- <td colspan="2"></td> -->
+              <td>
+                  <span class="text-dark text-xs ps-2">Jumlah Barang</span>
+              </td>
+              <td>
+                  <input type="text" class="form-control ps-2" name="kondisi_barang"  value="<?php echo $forms->Qty; ?>" readonly>
+              </td>
+          </tr>
+        </tbody>
+    </table>
   </form>
+  <div class="ps-4">
+    <label class="form-label">Catatan :</label>
+    <div class="input-group input-group-dynamic mb-4">
+      
+      <input type="text" class="form-control" value="<?php echo $forms->Note; ?>" readonly>
+    </div>
+    <td>
+      <span class="text-dark text-xs ps-2"><i>Dicetak Oleh <?php echo $_SESSION['nama'] ?> pada tanggal <?php date_default_timezone_set("Asia/Jakarta"); echo date("d F Y H:i:s"); ?></i></span>
+    </td>
+  </div>
+
+
+
+  <!-- <button id="print-button" class="btn btn-outline-info" >Cetak</button> -->
+
+  <button id="print-button" onclick="window.print()" class="btn">Cetak</button>
+
+  <script>
+    function hidePrintButton() {
+  // Mengakses tombol print
+  var printButton = document.getElementById("print-button");
+  window.print();
+
+
+  // Menyembunyikan tombol print
+  printButton.style.display = "none";
+}
+
+  </script>
 </div>
-</div>
+
+
+
+<!-- footer -->
+<?php include 'template/footer.php' ?>

@@ -1,5 +1,8 @@
 <?php 
-
+session_start(); 
+if($_SESSION['username']==""){
+  header("location:../../index.php?alert=belum_login");
+}
 include 'template/sidebar.php';
 include 'template/navbar.php';
 
@@ -40,14 +43,11 @@ include 'template/navbar.php';
       </thead>
       <tbody>
         <?php
-
           
           require "../config/config.php";
-
+          $cursor = $collection->find([], ['sort' => ['_id' => -1]]);
 
           $form_qc = $collection->find([]);
-
-
 
           foreach($form_qc as $formId) {
              echo "<tr>";
@@ -62,8 +62,8 @@ include 'template/navbar.php';
                echo "<td>".$formId->Note."</td>";
                echo '<td class ="align-middle">';
                echo "<a href='edit-forms.php?id=".$formId->_id."'<i class='material-icons'>edit_note</i>";
-               echo "<a onClick=\"javascript: return confirm('Apakah Anda Yakin Untuk Menghapus?');\" href='delete-forms.php?id=".$formId->_id."'<i class='material-icons'>delete</i>";
-               echo "<a href='../print_qc.php?id=".$formId->_id."'<i class='material-icons'>print</i>";
+               echo "<a onClick=\"javascript: return confirm('Apakah Anda Yakin Untuk Menghapus?');\" name='delete' href='delete-forms.php?id=".$formId->_id."'<i class='material-icons'>delete</i>";
+               echo "<a href='print-qc.php?id=".$formId->_id."'<i class='material-icons'>print</i>";
                echo '</td>';
              echo "</tr>";
           };
@@ -76,3 +76,4 @@ include 'template/navbar.php';
     </table>
   </div>
   </div>
+  <?php include 'template/footer.php' ?>
